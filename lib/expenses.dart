@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Expenses extends StatefulWidget{
+class Expenses extends StatefulWidget {
   const Expenses({super.key});
 
   @override
@@ -9,11 +9,20 @@ class Expenses extends StatefulWidget{
   }
 }
 
-class _ExpensesState extends State<Expenses>{
+class _ExpensesState extends State<Expenses> {
   @override
   Widget build(context) {
     return Scaffold(
-
+      backgroundColor: Colors.black26,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('title'),
+            Text('Expenses'),
+          ],
+        ),
+      ),
     );
   }
 }
