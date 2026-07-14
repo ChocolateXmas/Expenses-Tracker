@@ -38,7 +38,6 @@ class _ExpensesState extends State<Expenses> {
     showModalBottomSheet(
       context: context,
       showDragHandle: false,
-      // useSafeArea: false,
       builder: (ctx) => const NewExpense(),
     );
   }
