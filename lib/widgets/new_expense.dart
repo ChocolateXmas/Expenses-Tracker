@@ -30,13 +30,6 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _amountController.dispose();
-    super.dispose();
-  }
-
   final Widget modalDragTitle = SizedBox(
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -71,6 +64,47 @@ class _NewExpenseState extends State<NewExpense> {
       ],
     ),
   );
+
+  void _submitExpenseData() {
+    final amount = double.tryParse(_amountController.text);
+    final isAmountInvalid = amount == null || amount <= 0;
+    if (_titleController.text.trim().isEmpty ||
+        isAmountInvalid ||
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text(
+            textAlign: TextAlign.center,
+            'Invalid data input',
+          ),
+          content: Text(
+            textAlign: TextAlign.center,
+            'Make sure to fill Title, Amount & select Date',
+          ),
+          actions: [
+            Center(
+              child: TextButton.icon(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  Navigator.pop(ctx);
+                },
+                label: Text('Close'),
+              ),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _amountController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,8 +188,7 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      print(_titleController.text);
-                      print(_amountController.text);
+                      _submitExpenseData();
                     },
                     child: const Text('Save'),
                   ),
