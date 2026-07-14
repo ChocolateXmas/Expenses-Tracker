@@ -33,27 +33,37 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      constraints: const BoxConstraints(
+        minWidth: double.infinity,
+      ),
+      builder: (ctx) => const Text('Hello'),
+    );
+  }
+
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Expenses'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _openAddExpenseOverlay,
             icon: Icon(Icons.add),
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Chart'),
-            Expanded(
-              child: ExpensesList(expenses: _expensesList),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Chart'),
+          Expanded(
+            child: ExpensesList(expenses: _expensesList),
+          ),
+        ],
       ),
     );
   }
