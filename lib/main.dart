@@ -4,11 +4,7 @@ import 'package:expenses_tracker/widgets/expenses.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Expenses(),
-        ),
-      ),
+      home: Expenses(),
     ),
   );
 }

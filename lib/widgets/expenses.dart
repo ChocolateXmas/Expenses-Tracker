@@ -36,7 +36,14 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
