@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:expenses_tracker/models/expense.dart';
-import 'package:expenses_tracker/widgets/expenses_list/expenses_list.dart';
 
 class NewExpense extends StatefulWidget {
-  NewExpense({super.key, required this.onAddExpense});
+  const NewExpense({super.key, required this.onAddExpense});
 
-  void Function(Expense exp) onAddExpense;
+  final void Function(Expense exp) onAddExpense;
 
   @override
   State<NewExpense> createState() {
@@ -193,7 +192,6 @@ class _NewExpenseState extends State<NewExpense> {
                         )
                         .toList(),
                     onChanged: (value) {
-                      // print(value);
                       if (value == null) return;
                       setState(() {
                         _selectedCategory = value;
