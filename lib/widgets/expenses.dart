@@ -50,10 +50,52 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  void _addExpenseAtIndex(Expense exp, int index) {
+    if (index >= 0 && index <= _expensesList.length + 1) {
+      setState(() {
+        _expensesList.insert(index, exp);
+      });
+    }
+  }
+
   void _removeExpense(Expense exp) {
+    final int expenseIndex = _expensesList.indexOf(exp);
     setState(() {
       _expensesList.remove(exp);
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        action: SnackBarAction(
+          label: 'UNDO',
+          onPressed: () {
+            _addExpenseAtIndex(exp, expenseIndex);
+          },
+        ),
+        duration: const Duration(seconds: 5),
+        persist: false,
+        padding: EdgeInsets.all(15),
+        content: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.do_not_disturb_alt_sharp,
+                color: Colors.white,
+              ),
+            ),
+            Flexible(
+              child: Text(
+                'Deleted Expense: ${exp.title} !',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
