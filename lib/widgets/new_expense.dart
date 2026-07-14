@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:expenses_tracker/models/expense.dart';
+import 'package:expenses_tracker/widgets/expenses_list/expenses_list.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  NewExpense({super.key, required this.onAddExpense});
+
+  void Function(Expense exp) onAddExpense;
 
   @override
   State<NewExpense> createState() {
@@ -66,11 +69,10 @@ class _NewExpenseState extends State<NewExpense> {
   );
 
   void _submitExpenseData() {
+    final title = _titleController.text.trim();
     final amount = double.tryParse(_amountController.text);
     final isAmountInvalid = amount == null || amount <= 0;
-    if (_titleController.text.trim().isEmpty ||
-        isAmountInvalid ||
-        _selectedDate == null) {
+    if (title.isEmpty || isAmountInvalid || _selectedDate == null) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -97,6 +99,18 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+    /*
+      Add a new expense through the onAddExpense Pointer
+      directly to the Expenses Screen
+    */
+    widget.onAddExpense(
+      Expense(
+        title: title,
+        amount: amount,
+        date: _selectedDate!,
+        category: _selectedCategory,
+      ),
+    );
   }
 
   @override
