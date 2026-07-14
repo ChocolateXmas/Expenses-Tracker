@@ -32,40 +32,42 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  final Widget modalDragTitle = SizedBox(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, bottom: 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // The Drag Handle itself
-              Container(
-                width: 35,
-                height: 5,
-                decoration: BoxDecoration(
-                  color: Colors.black38,
-                  borderRadius: BorderRadius.circular(2),
+  Widget _modalDragTitle(BuildContext context) {
+    return SizedBox(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // The Drag Handle itself
+                Container(
+                  width: 35,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 12), // Gap between handle and title
-              // The Anchored Title
-              Text(
-                'New Expense',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 12), // Gap between handle and title
+                // The Anchored Title
+                Text(
+                  'New Expense',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        const Divider(height: 1),
-      ],
-    ),
-  );
+          const Divider(height: 1),
+        ],
+      ),
+    );
+  }
 
   void _submitExpenseData() {
     final title = _titleController.text.trim();
@@ -124,7 +126,7 @@ class _NewExpenseState extends State<NewExpense> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        modalDragTitle,
+        _modalDragTitle(context),
         Padding(
           padding: const EdgeInsets.only(
             left: 35,
