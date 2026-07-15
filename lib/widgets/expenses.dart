@@ -103,8 +103,6 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
     Widget mainContent = const Center(
       child: Text('No expenses yet... Try adding some !'),
     );
@@ -115,6 +113,7 @@ class _ExpensesState extends State<Expenses> {
       );
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Expenses'),
         actions: [
@@ -137,11 +136,15 @@ class _ExpensesState extends State<Expenses> {
               ],
             )
           : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                  child: Chart(
-                    expenses: _expensesList,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Chart(
+                        expenses: _expensesList,
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
