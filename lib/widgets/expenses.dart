@@ -102,6 +102,9 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     Widget mainContent = const Center(
       child: Text('No expenses yet... Try adding some !'),
     );
@@ -121,17 +124,31 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Chart(
-            expenses: _expensesList.isNotEmpty ? _expensesList : [],
-          ),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: (screenWidth < 600)
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Chart(
+                  expenses: _expensesList,
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: Chart(
+                    expenses: _expensesList,
+                  ),
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }
