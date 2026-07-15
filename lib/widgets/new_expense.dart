@@ -33,6 +33,8 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   Widget _modalDragTitle(BuildContext context) {
+    final isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return SizedBox(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -47,7 +49,7 @@ class _NewExpenseState extends State<NewExpense> {
                   width: 35,
                   height: 5,
                   decoration: BoxDecoration(
-                    color: Colors.black38,
+                    color: isDarkMode ? Colors.white70 : Colors.black87,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
