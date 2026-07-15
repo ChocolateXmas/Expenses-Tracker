@@ -81,7 +81,7 @@ class _ExpensesState extends State<Expenses> {
               padding: const EdgeInsets.only(right: 10),
               child: Icon(
                 Icons.do_not_disturb_alt_sharp,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onInverseSurface,
               ),
             ),
             Flexible(
