@@ -14,6 +14,7 @@ void main() {
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.primaryContainer,
           centerTitle: true,
+          titleTextStyle: TextStyle(fontSize: 28),
         ),
         cardTheme: CardThemeData().copyWith(
           color: kColorScheme.secondaryContainer,
@@ -29,8 +30,9 @@ void main() {
         ),
         textTheme: ThemeData().textTheme.copyWith(
           titleLarge: TextStyle(
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 26,
+            color: kColorScheme.onPrimaryContainer,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
           ),
         ),
       ),
